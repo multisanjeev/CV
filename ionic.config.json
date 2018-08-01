@@ -1,0 +1,8 @@
+{
+  "name": "CV",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "deced69d"
+}
