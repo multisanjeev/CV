@@ -1,0 +1,31 @@
+<!--
+  Generated template for the TicketsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Tickets</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-segment [(ngModel)]="initTicket">
+    <ion-segment-button value="new">
+      New
+    </ion-segment-button>
+    <ion-segment-button value="open">
+      Open
+    </ion-segment-button>
+    <ion-segment-button value="stall">
+      Stall
+    </ion-segment-button>
+    <ion-segment-button value="resolve">
+      Resolved
+    </ion-segment-button>
+  </ion-segment>
+</ion-content>

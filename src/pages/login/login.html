@@ -1,0 +1,70 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div margin-vertical text-center>
+        <img src="assets/imgs/AgreeYa_Logo.png" alt="AgreeYa">
+    </div>
+  <div text-center>
+      <ion-segment [(ngModel)]="initpage">
+          <ion-segment-button value="login">
+            Login
+          </ion-segment-button>
+          <ion-segment-button value="signup">
+            Register
+          </ion-segment-button>
+      </ion-segment>
+  </div>
+  
+  <div [ngSwitch]="initpage" text-center margin-vertical>
+      <form [formGroup]="login" (ngSubmit)="submitLoginForm()" *ngSwitchCase="'login'">
+        <ion-item>
+          <ion-label floating>Email<span class="required">*</span></ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Password<span class="required">*</span></ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <button ion-button margin-top round type="submit" [disabled]="!login.valid">Login</button>
+        <div margin-vertical><button ion-button margin-top clear >Forgot Password</button></div>
+      </form>
+
+      <form [formGroup]="signup" text-center margin-vertical *ngSwitchCase="'signup'">
+          <ion-item>
+            <ion-label floating>Full Name<span class="required">*</span></ion-label>
+            <ion-input type="text" formControlName="fullName"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label floating>Email<span class="required">*</span></ion-label>
+              <ion-input type="text" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Phone No.<span class="required">*</span></ion-label>
+                <ion-input type="text" formControlName="phone"></ion-input>
+              </ion-item>
+          <ion-item>
+            <ion-label floating>Password<span class="required">*</span></ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <button ion-button margin-top round type="submit" [disabled]="!signup.valid">Sign Up</button>
+        </form>
+  </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+      <ion-title></ion-title>
+    </ion-toolbar>
+  </ion-footer>
