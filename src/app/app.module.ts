@@ -14,17 +14,21 @@ import { HomePage } from '../pages/home/home';
 import { DescriptionPage } from "../pages/description/description";
 import { QueuePage } from "../pages/queue/queue";
 import { TicketsPage } from "../pages/tickets/tickets";
+import { TicketDetailPage } from "../pages/ticket-detail/ticket-detail";
 import { LoginProvider } from '../providers/login/login';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { ModalContentPage } from "../pages/modal-content/modal-content";
+import { CommonPage } from "../pages/common/common";
+import { StreamingMedia } from '@ionic-native/streaming-media';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    DescriptionPage,LoginPage,QueuePage,TicketsPage
+    DescriptionPage,LoginPage,QueuePage,TicketsPage,TicketDetailPage,ModalContentPage,CommonPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { IonicStorageModule } from '@ionic/storage';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,DescriptionPage,LoginPage,QueuePage,TicketsPage
+    HomePage,DescriptionPage,LoginPage,QueuePage,TicketsPage,TicketDetailPage,ModalContentPage,CommonPage
   ],
   providers: [
     StatusBar,
@@ -44,6 +48,7 @@ import { IonicStorageModule } from '@ionic/storage';
     VideoPlayer,
     BatteryStatus,
     DatePicker,
+    StreamingMedia,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginProvider
   ]

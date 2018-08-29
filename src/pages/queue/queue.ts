@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TicketsPage } from "../tickets/tickets";
 import { LoginProvider } from "../../providers/login/login";
-import { VideoPlayer } from '@ionic-native/video-player';
+import { VideoPlayer,VideoOptions } from '@ionic-native/video-player';
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
+
 
 /**
  * Generated class for the QueuePage page.
@@ -17,10 +19,22 @@ import { VideoPlayer } from '@ionic-native/video-player';
   templateUrl: 'queue.html',
 })
 export class QueuePage {
-  private queueList;
+  public queueList;
   public loginUserInfo;
+  public videoOpts : VideoOptions;
   constructor(public navCtrl: NavController, public navParams: NavParams, public loginProvider: LoginProvider,
-    private videoPlayer: VideoPlayer) {
+    public videoPlayer : VideoPlayer, public streamingMedia: StreamingMedia) {
+
+    let options: StreamingVideoOptions = {
+      successCallback: () => { console.log('Video played') },
+      errorCallback: (e) => { console.log('Error streaming') },
+      orientation: 'landscape',
+      shouldAutoClose: true,
+      controls: false
+    };
+    
+    this.streamingMedia.playVideo('https://www.w3schools.com/tags/mov_bbb.mp4', options);
+      
     this.loginUserInfo = navParams.data.loginUserInfo;
     this.queueList = [
       {
@@ -61,10 +75,13 @@ export class QueuePage {
   }
 
   ticketListPage(queueData) {
-    this.loginProvider.getTicketData(queueData.title).then(
-      data => { console.log(data); }
+    this.loginProvider.presentLoading();
+    this.loginProvider.getTicketData(queueData.title,'new').then(
+      data => {
+        let itemArray:any = data;
+        this.navCtrl.push(TicketsPage, {list: queueData, queue: queueData.title, ticket: itemArray.items});
+      }
     );
-    this.navCtrl.push(TicketsPage, {list: queueData});
   }
 
   ionViewDidLoad() {
@@ -72,12 +89,16 @@ export class QueuePage {
   }
 
   // Playing a video.
-  playVideo(){
-    this.videoPlayer.play('file:///android_asset/www/movie.mp4').then(() => {
-      console.log('video completed');
+  public playVideo(){
+    this.videoOpts = {volume : 1.0};
+    this.videoPlayer.play('https://www.w3schools.com/tags/mov_bbb.mp4').then(() => {
+    console.log('video completed');
     }).catch(err => {
-      console.log(err);
-    });
-  }
+    console.log(err);
+    });    
+}
+public stopPlayingVideo(){
+    this.videoPlayer.close();
+}
 
 }

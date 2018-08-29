@@ -1,0 +1,25 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Close</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+<div margin-vertical class="margin_bottom"><span>Suject:</span><span padding-left>{{ modalPara.ticket.subject}}</span></div>
+<form [formGroup]="contant" (ngSubmit)="submitAction(modalPara.ticket.id, modalPara.action)" >
+  <ion-item margin-vertical>
+      <ion-label stacked class="margin_bottom">Add {{ modalPara.action }}<span class="required">*</span></ion-label>
+      <ion-textarea placeholder="Write here..." cols="5" rows="12" formControlName="remark"></ion-textarea>
+  </ion-item>
+  <button ion-button margin-top round type="submit" [disabled]="!contant.valid">Submit</button>
+</form>
+</ion-content>

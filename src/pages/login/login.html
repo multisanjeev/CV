@@ -31,7 +31,7 @@
   <div [ngSwitch]="initpage" text-center margin-vertical>
       <form [formGroup]="login" (ngSubmit)="submitLoginForm()" *ngSwitchCase="'login'">
         <ion-item>
-          <ion-label floating>Email<span class="required">*</span></ion-label>
+          <ion-label floating>User Name<span class="required">*</span></ion-label>
           <ion-input type="text" formControlName="email"></ion-input>
         </ion-item>
         <ion-item>
@@ -60,6 +60,7 @@
             <ion-input type="password" formControlName="password"></ion-input>
           </ion-item>
           <button ion-button margin-top round type="submit" [disabled]="!signup.valid">Sign Up</button>
+          <button (click)="camClick()">Picture</button>
         </form>
   </div>
 </ion-content>

@@ -9,23 +9,48 @@
   <ion-navbar>
     <ion-title>Tickets</ion-title>
   </ion-navbar>
-
+  <ion-toolbar>
+    <ion-title>{{queueName}}</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
   <ion-segment [(ngModel)]="initTicket">
-    <ion-segment-button value="new">
+    <ion-segment-button value="new" (click)="getTicketByStatus(queueName,'new')">
       New
     </ion-segment-button>
-    <ion-segment-button value="open">
+    <ion-segment-button value="open" (click)="getTicketByStatus(queueName,'open')">
       Open
     </ion-segment-button>
-    <ion-segment-button value="stall">
+    <ion-segment-button value="stalled" (click)="getTicketByStatus(queueName,'stalled')">
       Stall
     </ion-segment-button>
-    <ion-segment-button value="resolve">
+    <ion-segment-button value="resolved" (click)="getTicketByStatus(queueName,'resolved')">
       Resolved
     </ion-segment-button>
   </ion-segment>
+
+  <div [ngSwitch]="initTicket" text-center margin-vertical>
+    <ion-list *ngSwitchCase="'new'">
+      <button ion-item *ngFor="let item of tickets" (click)="openMenu(item)" icon-start>
+        <div><span>( {{item.id}} )</span><span padding-left>{{item.subject}}</span></div>
+      </button>
+    </ion-list>
+    <ion-list *ngSwitchCase="'open'">
+      <button ion-item *ngFor="let item of tickets" (click)="openMenu(item)" icon-start>
+        <div><span>( {{item.id}} )</span><span padding-left>{{item.subject}}</span></div>
+      </button>
+    </ion-list>
+    <ion-list *ngSwitchCase="'stalled'">
+      <button ion-item *ngFor="let item of tickets" icon-start>
+        <div><span>( {{item.id}} )</span><span padding-left>{{item.subject}}</span></div>
+      </button>
+    </ion-list>
+    <ion-list *ngSwitchCase="'resolved'">
+      <button ion-item *ngFor="let item of tickets" icon-start>
+        <div><span>( {{item.id}} )</span><span padding-left>{{item.subject}}</span></div>
+      </button>
+    </ion-list>
+  </div>
 </ion-content>

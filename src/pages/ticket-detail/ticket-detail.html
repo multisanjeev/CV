@@ -1,0 +1,21 @@
+<!--
+  Generated template for the TicketDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ ticketData.subject }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-segment [(ngModel)]="msgType">
+    <ion-segment-button value="correspondence">Correspondence</ion-segment-button>
+    <ion-segment-button value="comment">Comment</ion-segment-button>
+  </ion-segment>
+</ion-content>
